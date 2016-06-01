@@ -27,10 +27,6 @@ class EngineData
 
     private $text;
     private $parsed;
- //   private $node;
-  //  private $property_stack;
-  //  private $property;
-  //  private $node_stack;
 
     private $INSTRUCTIONS = array(
         'HashStart',
