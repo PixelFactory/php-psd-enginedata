@@ -1,0 +1,6 @@
+.DS_Store
+Desktop.ini
+.idea
+vendor/
+composer.lock
+tests/
