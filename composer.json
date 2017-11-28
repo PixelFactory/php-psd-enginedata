@@ -17,9 +17,7 @@
     "require": {},
     "autoload": {
         "psr-4":{
-            "Enginedata\\": "src/",
-			"exclude-from-classmap": ["/files/"]
+            "Enginedata\\": "src/"
         }
-
     }
 }
