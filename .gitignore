@@ -4,3 +4,4 @@ Desktop.ini
 vendor/
 composer.lock
 tests/
+index.php

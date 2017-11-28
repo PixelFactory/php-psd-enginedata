@@ -1,16 +1,12 @@
 <?php
 
-require_once 'lib/enginedata.php';
+require "vendor/autoload.php";
 
+use Enginedata\Enginedata;
 
-$parser = EngineData::load('files/TEST2');
+$x = Enginedata::load('files/enginedata');
 
-$parser->parse();
-
-$data = $parser->getNode();
-
+$w = $x->parse();
 
 echo '<pre>';
-var_dump($data);
-echo '</pre>';
-
+var_dump($w);

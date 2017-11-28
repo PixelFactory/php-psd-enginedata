@@ -54,6 +54,7 @@ class Text
         return $this->text[ $this->line + 1 ];
     }
 
+
     public function length()
     {
         return count( $this->text );
