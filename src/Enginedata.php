@@ -23,8 +23,6 @@ class Enginedata{
 
     public function parse()
     {
-        //TODO: Add return if text parsed!
-
         $parser = new LineParser();
 
         for( $this->text->rewind(); $this->text->valid(); $this->text->next() )
