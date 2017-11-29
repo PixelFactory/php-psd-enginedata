@@ -1,6 +1,6 @@
 # PSD EngineData
 
-Parser[enginedata](https://github.com/layervault/psd-enginedata)on php
+Parser [enginedata](https://github.com/layervault/psd-enginedata) on php
 
 ## Installation
 Add this line to your application's composer.json in require block:
