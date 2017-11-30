@@ -3,6 +3,4 @@ Desktop.ini
 .idea
 vendor/
 composer.lock
-tests/
 index.php
-lib/
