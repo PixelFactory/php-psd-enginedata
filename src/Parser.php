@@ -13,7 +13,7 @@ abstract class Parser{
 
     abstract protected function parse( Node $node, $line, $matches );
 
-    public function convertToInt( $num )
+    public function convertToNumber( $num )
     {
         $dot = strpos( $num, '.' );
 

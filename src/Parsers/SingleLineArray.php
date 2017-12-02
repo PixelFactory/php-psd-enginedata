@@ -21,7 +21,7 @@ class SingleLineArray extends Parser {
 
         foreach( $values as $num )
         {
-            $value[] = $this->convertToInt($num);
+            $value[] = $this->convertToNumber($num);
         }
 
         $node->setValue($name, $value);
