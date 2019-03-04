@@ -5,8 +5,8 @@
     "homepage": "https://github.com/LoginovIlya",
     "type": "library",
     "require-dev": {
-        "phpunit/phpunit": "~5.0",
-        "phpunit/php-code-coverage": "^4.0"
+        "phpunit/phpunit": "^8",
+        "phpunit/php-code-coverage": "^7.0"
     },
     "license": "GNU GPL v2.0",
     "authors": [
@@ -16,7 +16,10 @@
         }
     ],
     "minimum-stability": "stable",
-    "require": {},
+    "require": {
+        "php": "^7.2",
+        "ext-iconv": "*"
+    },
     "autoload": {
         "psr-4":{
             "Enginedata\\": "src/"

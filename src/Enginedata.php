@@ -21,6 +21,9 @@ class Enginedata{
         $this->node = new Node();
     }
 
+    /**
+     * @throws \Exception
+     */
     public function parse()
     {
         $parser = new LineParser();

@@ -15,31 +15,24 @@ class LineParser{
 
     /**
      * Initialize parser array
-     *
+     * @param \DirectoryIterator $classes
      * @throws \Exception
      */
-    private function initializeParsers()
+    private function initializeParsers( \DirectoryIterator $classes )
     {
-        $dir = __DIR__.DIRECTORY_SEPARATOR.'Parsers'.DIRECTORY_SEPARATOR;
-        $classes = scandir($dir);
-
         foreach ($classes as $class_file)
         {
-            if( $class_file != '..' && $class_file != '.' )
+            if($class_file->isDot()) continue;
+
+            $full_class_name = 'Enginedata\\Parsers\\' . $class_file->getBasename();
+
+            $parser = new $full_class_name;
+
+            if( $parser instanceof Parser )
             {
-                $class_name =  pathinfo( $class_file,  PATHINFO_FILENAME );
-
-                $full_class_name = 'Enginedata\\Parsers\\' . $class_name;
-
-                $parser = new $full_class_name;
-
-                if( $parser instanceof Parser )
-                {
-                    $this->parsers[$class_name] = $parser;
-                }else{
-                    unset($parser);
-                    throw new \Exception('Parser "'.$full_class_name.'" not extends "Parser"');
-                }
+                $this->parsers[$class_file->getBasename()] = $parser;
+            }else{
+                throw new \Exception('Parser "'.$full_class_name.'" not extends "Parser"');
             }
         }
     }
@@ -72,7 +65,7 @@ class LineParser{
     }
 
     /**
-     * @param $name parser class name
+     * @param string $name parser class name
      * @return mixed parser object
      */
     public function getParser( $name )
@@ -80,9 +73,13 @@ class LineParser{
         return $this->parsers[$name];
     }
 
+    /**
+     * @throws \Exception
+     */
     public function __construct()
     {
-        $this->initializeParsers();
+        $classes = new \DirectoryIterator( __DIR__ . DIRECTORY_SEPARATOR . 'Parsers');
+        $this->initializeParsers( $classes );
     }
 
 }

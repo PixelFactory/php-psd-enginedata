@@ -2,12 +2,10 @@
 
 namespace Enginedata;
 
-use Enginedata\Node;
 
 abstract class Parser{
 
     protected static $multiLineArray = false;
-
 
     abstract public function expression();
 

@@ -5,7 +5,7 @@ namespace Enginedata\Parsers;
 use Enginedata\Node;
 use Enginedata\Parser;
 
-class String extends Parser {
+class StringParser extends Parser {
 
     public function expression()
     {

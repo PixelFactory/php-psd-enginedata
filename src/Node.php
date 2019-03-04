@@ -29,6 +29,7 @@ class Node{
 
     /**
      * Create new node
+     * @param $useIndex
      */
     public function addNode( $useIndex = false )
     {
