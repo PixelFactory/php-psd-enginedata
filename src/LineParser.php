@@ -24,13 +24,15 @@ class LineParser{
         {
             if($class_file->isDot()) continue;
 
-            $full_class_name = 'Enginedata\\Parsers\\' . $class_file->getBasename();
+            $class_name = $class_file->getBasename('.php');
+
+            $full_class_name = 'Enginedata\\Parsers\\' . $class_name;
 
             $parser = new $full_class_name;
 
             if( $parser instanceof Parser )
             {
-                $this->parsers[$class_file->getBasename()] = $parser;
+                $this->parsers[$class_name] = $parser;
             }else{
                 throw new \Exception('Parser "'.$full_class_name.'" not extends "Parser"');
             }
