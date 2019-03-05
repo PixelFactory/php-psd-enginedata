@@ -1,4 +1,7 @@
 language: php
 php:
-- 7.2
-install: composer install
+  - 7.2
+install:
+  - composer install --dev
+after_script:
+  - php vendor/bin/php-coveralls -v
