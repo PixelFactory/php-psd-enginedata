@@ -3,5 +3,7 @@ php:
   - 7.2
 install:
   - composer install --dev
+script:
+- php vendor/bin/phpunit --coverage-clover build/logs/clover.xml
 after_script:
-  - php vendor/bin/php-coveralls -v
+- php vendor/bin/php-coveralls -v
