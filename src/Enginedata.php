@@ -26,7 +26,8 @@ class Enginedata{
      */
     public function parse()
     {
-        $parser = new LineParser();
+        $classes = new \DirectoryIterator( __DIR__ . DIRECTORY_SEPARATOR . 'Parsers');
+        $parser = (new LineParser())->initializeParsers($classes);
 
         for( $this->text->rewind(); $this->text->valid(); $this->text->next() )
         {

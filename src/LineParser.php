@@ -16,9 +16,10 @@ class LineParser{
     /**
      * Initialize parser array
      * @param \DirectoryIterator $classes
+     * @return $this
      * @throws \Exception
      */
-    private function initializeParsers( \DirectoryIterator $classes )
+    public function initializeParsers( \DirectoryIterator $classes )
     {
         foreach ($classes as $class_file)
         {
@@ -26,17 +27,19 @@ class LineParser{
 
             $class_name = $class_file->getBasename('.php');
 
-            $full_class_name = 'Enginedata\\Parsers\\' . $class_name;
+            $full_class_name = '\\Enginedata\\Parsers\\' . $class_name;
 
-            $parser = new $full_class_name;
+            //$parser = new $full_class_name;
 
-            if( $parser instanceof Parser )
+            if( is_subclass_of($full_class_name, '\\Enginedata\\Parser') )
             {
-                $this->parsers[$class_name] = $parser;
+                $this->parsers[$class_name] = $full_class_name;
             }else{
                 throw new \Exception('Parser "'.$full_class_name.'" not extends "Parser"');
             }
         }
+
+        return $this;
     }
 
     /**
@@ -47,11 +50,9 @@ class LineParser{
      */
     public function parse( Node $node, $line )
     {
-
-
-        foreach ( $this->parsers as $parser )
+        foreach ( $this->getParsers() as $parser )
         {
-            if( $parser->startParsing( $node, $line ) ){
+            if( $this->getParserInstance( $parser )->startParsing( $node, $line ) ){
                 return true;
             }
         }
@@ -72,16 +73,23 @@ class LineParser{
      */
     public function getParser( $name )
     {
-        return $this->parsers[$name];
+        return $this->getParserInstance( $name );
     }
 
     /**
-     * @throws \Exception
+     * @param $name
+     * @return object|null
      */
-    public function __construct()
-    {
-        $classes = new \DirectoryIterator( __DIR__ . DIRECTORY_SEPARATOR . 'Parsers');
-        $this->initializeParsers( $classes );
-    }
+    protected function getParserInstance( $name ){
+        if( isset($this->parsers[$name]) ){
 
+            if( is_string($this->parsers[$name]) ){
+                $this->parsers[$name] = new $this->parsers[$name];
+            }
+
+            return $this->parsers[$name];
+        }
+
+        return null;
+    }
 }
