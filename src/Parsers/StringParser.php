@@ -19,7 +19,7 @@ class StringParser extends Parser {
         // Delete last bracket
         $string_u16 = substr($matches[2], 0 , -1);
         // Convert sting
-        $string_u8 = iconv('UTF-16BE', 'UTF-8', $string_u16);
+        $string_u8 = @iconv('UTF-16BE', 'UTF-8', $string_u16);
 
         if( $string_u8 === false )
         {
