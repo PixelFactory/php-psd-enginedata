@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<phpunit bootstrap="vendor/autoload.php" colors="true" cacheResult="false">
+<phpunit bootstrap="tests/bootstrap.php" colors="true" cacheResult="false">
     <testsuite name="Unit">
         <directory>tests</directory>
     </testsuite>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">src</directory>
+            <exclude>
+                <file>tests/Parsers/TestCaseParser.php</file>
+            </exclude>
         </whitelist>
     </filter>
 </phpunit>

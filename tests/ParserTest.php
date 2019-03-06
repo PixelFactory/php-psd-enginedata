@@ -29,8 +29,11 @@ class ParserTest extends TestCase
     public function testStartParsing(){
         $node = $this->getMockBuilder(\Enginedata\Node::class)->getMock();
 
-        $this->assertEquals($this->parser->startParsing($node, '<<'), true);
-        $this->assertEquals($this->parser->startParsing($node, 'line'), false);
+        /**
+         * @var \Enginedata\Node $node
+         */
+        $this->assertSame($this->parser->startParsing($node, '<<'), true);
+        $this->assertSame($this->parser->startParsing($node, 'line'), false);
 
     }
 
@@ -39,7 +42,7 @@ class ParserTest extends TestCase
      */
     public function testConvertToNumber(){
         foreach ($this->numbersToConvert() as $numberEqualData) {
-            $this->assertEquals($this->parser->convertToNumber($numberEqualData[0]), $numberEqualData[1]);
+            $this->assertSame($this->parser->convertToNumber($numberEqualData[0]), $numberEqualData[1]);
         }
     }
 
@@ -49,19 +52,11 @@ class ParserTest extends TestCase
             [ '-0000',   0 ],
             [ '10',     10 ],
             [ '-10',   -10 ],
-            [ '.0000',   0 ],
+            [ '.0000', 0.0 ],
             [ '.10',  0.10 ],
-            [ '00.00',   0 ],
+            [ '00.00', 0.0 ],
             [ '0.1',   0.1 ],
             [ '-0.1', -0.1 ],
         ];
     }
-    /*
-$mock = $this->getMockForTrait(AbstractTrait::class);
-
-$mock->expects($this->any())
-->method('abstractMethod')
-->will($this->returnValue(true));
-
-$this->assertTrue($mock->concreteMethod());*/
 }

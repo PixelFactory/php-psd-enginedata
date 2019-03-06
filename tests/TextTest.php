@@ -22,7 +22,7 @@ class TextTest extends TestCase
         $text = new Text("<<\n\t/TestData\n\t<<\n\t\t/Values [ 0.0 ]\n\t>>\n>>");
 
         for( $text->rewind(); $text->valid(); $text->next() ) {
-            $this->assertEquals($text->current(),$text_data[$text->key()]);
+            $this->assertSame($text->current(),$text_data[$text->key()]);
         }
 
     }

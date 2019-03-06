@@ -5,7 +5,7 @@ namespace Enginedata\Parsers;
 use Enginedata\Node;
 use Enginedata\Parser;
 
-class Number extends Parser {
+class NumberParser extends Parser {
 
 
     public function expression()
@@ -13,7 +13,7 @@ class Number extends Parser {
         return '/^([A-Z0-9]+) ((-?\d+)|\.(\d+)|(-?\d+)\.(\d+))$/i';
     }
 
-    public function parse( Node $node, $line, $matches )
+    protected function parse( Node $node, $line, $matches )
     {
         $name = $matches[1];
         $number = $this->convertToNumber( $matches[2] );

@@ -35,7 +35,7 @@ abstract class Parser{
      */
     public function startParsing( Node $node, $line ){
 
-        $status = @preg_match( $this->expression() , $line, $matches );
+        $status = preg_match( $this->expression() , $line, $matches );
 
         if( $status === 1 )
         {
@@ -45,6 +45,4 @@ abstract class Parser{
             return false;
         }
     }
-
-
 }

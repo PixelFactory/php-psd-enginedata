@@ -5,12 +5,12 @@ namespace Enginedata\Parsers;
 use Enginedata\Node;
 use Enginedata\Parser;
 
-class EmptyString extends Parser {
+class EmptyStringParser extends Parser {
 
     public function expression()
     {
         return '/^$/i';
     }
 
-    public function parse( Node $node, $line, $matches ) {}
+    protected function parse( Node $node, $line, $matches ) {}
 }

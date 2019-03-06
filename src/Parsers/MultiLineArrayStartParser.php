@@ -5,7 +5,7 @@ namespace Enginedata\Parsers;
 use Enginedata\Node;
 use Enginedata\Parser;
 
-class MultiLineArrayStart extends Parser {
+class MultiLineArrayStartParser extends Parser {
 
 
     public function expression()
@@ -13,7 +13,7 @@ class MultiLineArrayStart extends Parser {
         return '/^([A-Z0-9]+) \[$/i';
     }
 
-    public function parse( Node $node, $line, $matches )
+    protected function parse( Node $node, $line, $matches )
     {
         $name = $matches[1];
         $node->setValue($name);

@@ -12,7 +12,7 @@ class StringParser extends Parser {
         return '/^([A-Z0-9]+) \(\xFE\xFF(.*)/i';
     }
 
-    public function parse( Node $node, $line, $matches )
+    protected function parse( Node $node, $line, $matches )
     {
         $name = $matches[1];
 
