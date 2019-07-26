@@ -17,6 +17,6 @@ class MultiLineArrayStartParser extends Parser {
     {
         $name = $matches[1];
         $node->setValue($name);
-        self::$multiLineArray = true;
+        self::$multiLineArray = 1;
     }
 }

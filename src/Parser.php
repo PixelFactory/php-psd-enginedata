@@ -5,7 +5,7 @@ namespace Enginedata;
 
 abstract class Parser{
 
-    protected static $multiLineArray = false;
+    protected static $multiLineArray = 0;
 
     abstract public function expression();
 

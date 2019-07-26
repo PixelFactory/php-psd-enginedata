@@ -9,7 +9,7 @@ class BooleanParser extends Parser {
 
     public function expression()
     {
-        return '/^\t*([A-Z0-9]+) (true|false)$/i';
+        return '/^([A-Z0-9]+) (true|false)$/i';
     }
 
     protected function parse(Node $node, $line, $matches )

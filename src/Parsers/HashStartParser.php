@@ -15,6 +15,7 @@ class HashStartParser extends Parser {
 
     protected function parse( Node $node, $line, $matches )
     {
-        $node->addNode(self::$multiLineArray);
+        $node->addNode(self::$multiLineArray === 1);
+        self::$multiLineArray++;
     }
 }
