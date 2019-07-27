@@ -1,7 +1,5 @@
 <?php
 
-use PHPUnit\Framework\TestCase;
-
 class HashEndParserTest extends TestCaseParser {
 
     public function testExpression()
@@ -19,6 +17,15 @@ class HashEndParserTest extends TestCaseParser {
         $node->expects($this->once())
             ->method('parentNode');
 
+        $reflectionClass = new ReflectionClass(get_class(self::$parser));
+
+        $staticPropertiesBefore = $reflectionClass->getStaticProperties();
+        $this->assertArrayHasKey('multiLineArray', $staticPropertiesBefore);
+
         $this->startParsingTest(2, $node);
+
+        $staticPropertiesAfter = $reflectionClass->getStaticProperties();
+        $this->assertArrayHasKey('multiLineArray', $staticPropertiesAfter);
+        $this->assertSame($staticPropertiesAfter['multiLineArray'], $staticPropertiesBefore['multiLineArray']  - 1);
     }
 }

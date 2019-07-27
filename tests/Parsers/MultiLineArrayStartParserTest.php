@@ -1,7 +1,5 @@
 <?php
 
-use PHPUnit\Framework\TestCase;
-
 class MultiLineArrayStartParserTest extends TestCaseParser {
 
     public function testExpression()
@@ -27,6 +25,6 @@ class MultiLineArrayStartParserTest extends TestCaseParser {
         $staticProperties = (new ReflectionClass(get_class(self::$parser)))->getStaticProperties();
 
         $this->assertArrayHasKey('multiLineArray', $staticProperties);
-        $this->assertSame($staticProperties['multiLineArray'], true);
+        $this->assertSame($staticProperties['multiLineArray'], 1);
     }
 }

@@ -1,7 +1,5 @@
 <?php
 
-use PHPUnit\Framework\TestCase;
-
 class HashNameParserTest extends TestCaseParser {
 
     public function testExpression()

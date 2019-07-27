@@ -1,7 +1,5 @@
 <?php
 
-use PHPUnit\Framework\TestCase;
-
 class StringParserTest extends TestCaseParser {
 
     public function testExpression()
