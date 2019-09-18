@@ -40,14 +40,16 @@ class Enginedata{
             }
         }
 
-        return $this->node->getNode();
+        return $this->getNode();
     }
 
-    /**
-     * @return Node
-     */
+	public function result()
+	{
+		return $this->getNode();
+	}
+
     public function getNode()
     {
-        return $this->node;
+        return $this->node->getNode();
     }
 }
