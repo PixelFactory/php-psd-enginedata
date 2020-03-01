@@ -7,7 +7,7 @@ use Enginedata\Parser;
 
 class StringParser extends Parser {
 
-    public function expression()
+    public function expression(): string
     {
         return '/^([A-Z0-9]+) \(\xFE\xFF(.*)/i';
     }

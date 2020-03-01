@@ -8,7 +8,7 @@ use Enginedata\Parser;
 class SingleLineArrayParser extends Parser {
 
 
-    public function expression()
+    public function expression(): string
     {
         return '/^([A-Z0-9]+) \[(.*)\]$/i';
     }
@@ -17,7 +17,7 @@ class SingleLineArrayParser extends Parser {
     {
         $name = $matches[1];
         $values = explode(' ', trim( $matches[2] ) );
-        $value = array();
+        $value = [];
 
         foreach( $values as $num )
         {

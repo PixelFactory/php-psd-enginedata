@@ -7,7 +7,7 @@ use Enginedata\Parser;
 
 class BooleanParser extends Parser {
 
-    public function expression()
+    public function expression(): string
     {
         return '/^([A-Z0-9]+) (true|false)$/i';
     }

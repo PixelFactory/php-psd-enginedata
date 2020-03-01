@@ -8,7 +8,7 @@ use Enginedata\Parser;
 class HashStartParser extends Parser {
 
 
-    public function expression()
+    public function expression(): string
     {
         return '/^<<$/';
     }

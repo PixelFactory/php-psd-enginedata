@@ -8,7 +8,7 @@ use Enginedata\Parser;
 class MultiLineArrayEndParser extends Parser {
 
 
-    public function expression()
+    public function expression(): string
     {
         return '/^\]$/';
     }

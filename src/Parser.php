@@ -5,19 +5,19 @@ namespace Enginedata;
 
 abstract class Parser{
 
-    protected static $multiLineArray = 0;
+    protected static int $multiLineArray = 0;
 
-    abstract public function expression();
+    abstract public function expression(): string;
 
     abstract protected function parse( Node $node, $line, $matches );
 
-    public function convertToNumber( $num )
+    public function convertToNumber( string $num ): float
     {
         $dot = strpos( $num, '.' );
 
         if( $dot === false ){
             // Format XX or -XX
-            return (int)$num;
+            return (float)$num;
         }elseif( $dot === 0 ){
             // Format .XX
             return (float)('0' . $num);
@@ -29,12 +29,12 @@ abstract class Parser{
     }
 
     /**
-     * @param \Enginedata\Node $node
+     * @param Node $node
      * @param $line
      * @return bool
      */
-    public function startParsing( Node $node, $line ){
-
+    public function startParsing( Node $node, $line )
+    {
         $status = preg_match( $this->expression() , $line, $matches );
 
         if( $status === 1 )

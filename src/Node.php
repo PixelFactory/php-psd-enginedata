@@ -4,9 +4,9 @@ namespace Enginedata;
 
 class Node{
 
-    private $node = array();
+    private array $node = [];
 
-    private $path = array();
+    private array $path = [];
 
     public function getNode()
     {
@@ -35,17 +35,17 @@ class Node{
     {
         if( count($this->path) === 0 ){
             // Root
-            $this->node[] = array();
+            $this->node[] = [];
             $this->path[] = (string)(count($this->node) - 1);
         }else{
             //No root
             $node = &$this->getLastNode();
 
             if($useIndex === true){
-                $node[] = array();
+                $node[] = [];
                 $this->path[] = count($node) - 1;
             }else {
-                $node = array();
+                $node = [];
             }
         }
     }
@@ -56,7 +56,7 @@ class Node{
 
         foreach ($this->path as $parent) {
             if (isset($ref) && !is_array($ref)) {
-                $ref = array();
+                $ref = [];
             }
 
             $ref = &$ref[$parent];

@@ -7,7 +7,7 @@ use Enginedata\Parser;
 
 class EmptyStringParser extends Parser {
 
-    public function expression()
+    public function expression(): string
     {
         return '/^$/i';
     }

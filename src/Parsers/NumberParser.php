@@ -8,7 +8,7 @@ use Enginedata\Parser;
 class NumberParser extends Parser {
 
 
-    public function expression()
+    public function expression(): string
     {
         return '/^([A-Z0-9]+) ((-?\d+)|\.(\d+)|(-?\d+)\.(\d+))$/i';
     }

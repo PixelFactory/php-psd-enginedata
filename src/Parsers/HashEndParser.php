@@ -7,7 +7,7 @@ use Enginedata\Parser;
 
 class HashEndParser extends Parser {
 
-    public function expression()
+    public function expression(): string
     {
         return '/^>>$/';
     }
