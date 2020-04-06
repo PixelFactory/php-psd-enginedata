@@ -20,8 +20,11 @@ class Enginedata{
 
     public function __construct( $text, SeekableIterator $textObject = null, ParseLine $parserObject = null )
     {
-        $this->text = $textObject ?? new (static::getConfig('text'))($text);
-        $this->parser = $parserObject ?? new (static::getConfig('lineParser'))();
+        $textClass = static::getConfig('text');
+        $lineParserClass = static::getConfig('lineParser');
+
+        $this->text = $textObject ?? new $textClass($text);
+        $this->parser = $parserObject ?? new $lineParserClass();
         $this->node = new Node();
     }
 

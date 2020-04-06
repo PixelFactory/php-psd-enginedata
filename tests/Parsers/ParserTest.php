@@ -23,7 +23,7 @@ class ParserTest extends TestCase
 
 
     /**
-     * @covers \Enginedata\Parser::startParsing
+     * @covers \Enginedata\Parsers\Parser::startParsing
      * @throws ReflectionException
      */
     public function testStartParsing(){
