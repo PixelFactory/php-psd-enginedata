@@ -1,32 +1,16 @@
 <?php
 
-namespace Enginedata;
+namespace Enginedata\Parsers;
 
+use Enginedata\Node;
 
 abstract class Parser{
 
     protected static int $multiLineArray = 0;
 
     abstract public function expression(): string;
-
     abstract protected function parse( Node $node, $line, $matches );
 
-    public function convertToNumber( string $num ): float
-    {
-        $dot = strpos( $num, '.' );
-
-        if( $dot === false ){
-            // Format XX or -XX
-            return (float)$num;
-        }elseif( $dot === 0 ){
-            // Format .XX
-            return (float)('0' . $num);
-        }else{
-            // Format XX.XX or -XX.XX
-            return (float)$num;
-        }
-
-    }
 
     /**
      * @param Node $node

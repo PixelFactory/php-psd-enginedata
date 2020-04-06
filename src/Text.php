@@ -2,8 +2,9 @@
 
 namespace Enginedata;
 
+use ArrayIterator;
 
-class Text extends \ArrayIterator{
+class Text extends ArrayIterator{
 
     public function __construct( $text , $flags = 0)
     {

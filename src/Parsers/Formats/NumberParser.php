@@ -1,11 +1,11 @@
 <?php
 
-namespace Enginedata\Parsers;
+namespace Enginedata\Parsers\Formats;
 
 use Enginedata\Node;
-use Enginedata\Parser;
+use Enginedata\Parsers\NumbersParser;
 
-class NumberParser extends Parser {
+class NumberParser extends NumbersParser {
 
 
     public function expression(): string

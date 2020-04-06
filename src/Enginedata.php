@@ -3,13 +3,13 @@
 namespace Enginedata;
 
 use Exception;
-use DirectoryIterator;
+use SeekableIterator;
 
 class Enginedata{
 
-    protected Text $text;
     protected Node $node;
-    protected LineParser $parser;
+    protected ParseLine $parser;
+    protected SeekableIterator $text;
 
     public static function load( $file )
     {
@@ -18,10 +18,10 @@ class Enginedata{
     }
 
 
-    public function __construct( $text )
+    public function __construct( $text, SeekableIterator $textObject = null, ParseLine $parserObject = null )
     {
-        $this->text = new Text( $text );
-        $this->parser = new LineParser();
+        $this->text = $textObject ?? new (static::getConfig('text'))($text);
+        $this->parser = $parserObject ?? new (static::getConfig('lineParser'))();
         $this->node = new Node();
     }
 
@@ -30,9 +30,6 @@ class Enginedata{
      */
     public function parse()
     {
-        $parsers = $this->getParsers();
-        $this->parser->initializeParsers($parsers);
-
         for( $this->text->rewind(); $this->text->valid(); $this->text->next() )
         {
             $line = $this->text->current();
@@ -56,8 +53,8 @@ class Enginedata{
         return $this->node->getNode();
     }
 
-    protected function getParsers(): DirectoryIterator
+    public static function getConfig($key): array
     {
-        return new DirectoryIterator( __DIR__ . DIRECTORY_SEPARATOR . 'Parsers');
+        return Config::DEFAULT_CONFIG[$key];
     }
 }

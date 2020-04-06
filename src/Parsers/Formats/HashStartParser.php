@@ -1,9 +1,9 @@
 <?php
 
-namespace Enginedata\Parsers;
+namespace Enginedata\Parsers\Formats;
 
 use Enginedata\Node;
-use Enginedata\Parser;
+use Enginedata\Parsers\Parser;
 
 class HashStartParser extends Parser {
 

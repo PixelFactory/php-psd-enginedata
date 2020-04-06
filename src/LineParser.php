@@ -2,43 +2,22 @@
 
 namespace Enginedata;
 
+use Enginedata\Parsers\Parser;
 use Exception;
 
 /**
  * Class LineParser contains 'Object Pool' all parsers
- * @package Enginedata
  */
-class LineParser{
+class LineParser implements ParseLine{
 
     /**
      * @var array Parsers objects
      */
-    protected array $parsers = [];
+    protected array $parsers;
 
-    /**
-     * Initialize parser array
-     * @param \DirectoryIterator $parsers
-     * @throws Exception
-     */
-    public function initializeParsers( \DirectoryIterator $parsers )
+    public function __construct()
     {
-        foreach ($parsers as $parser)
-        {
-            if($parser->isDot()) continue;
-
-            $class_name = $parser->getBasename('.php');
-
-            $full_class_name = '\\Enginedata\\Parsers\\' . $class_name;
-
-            //$parser = new $full_class_name;
-
-            if( is_subclass_of($full_class_name, '\\Enginedata\\Parser') )
-            {
-                $this->parsers[$class_name] = $full_class_name;
-            }else{
-                throw new Exception('Parser "'.$full_class_name.'" not extends "Parser"');
-            }
-        }
+        $this->parsers = Enginedata::getConfig('parsers');
     }
 
     /**
@@ -47,11 +26,11 @@ class LineParser{
      * @return bool
      * @throws Exception
      */
-    public function parse( Node $node, $line )
+    public function parse( Node $node, $line ): bool
     {
         foreach ( $this->getParsers() as $parser )
         {
-            if( $this->getParserInstance( $parser )->startParsing( $node, $line ) ){
+            if( $this->getParser( $parser )->startParsing( $node, $line ) ){
                 return true;
             }
         }

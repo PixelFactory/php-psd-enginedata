@@ -5,7 +5,7 @@ use PHPUnit\Framework\TestCase;
 class ParserTest extends TestCase
 {
     /**
-     * @var \Enginedata\Parser $parser
+     * @var \Enginedata\Parsers\Parser $parser
      */
     protected $parser;
 
@@ -14,7 +14,7 @@ class ParserTest extends TestCase
      */
     protected function setUp() : void
     {
-        $this->parser = $this->getMockForAbstractClass(\Enginedata\Parser::class);
+        $this->parser = $this->getMockForAbstractClass(\Enginedata\Parsers\Parser::class);
 
         // Hash start regexp
         $this->parser->expects($this->any())->method('expression')->willReturn('/^<<$/');
@@ -35,28 +35,5 @@ class ParserTest extends TestCase
         $this->assertSame($this->parser->startParsing($node, '<<'), true);
         $this->assertSame($this->parser->startParsing($node, 'line'), false);
 
-    }
-
-    /**
-     * @covers \Enginedata\Parser::convertToNumber
-     */
-    public function testConvertToNumber(){
-        foreach ($this->numbersToConvert() as $numberEqualData) {
-            $this->assertSame($this->parser->convertToNumber($numberEqualData[0]), $numberEqualData[1]);
-        }
-    }
-
-    public function numbersToConvert(){
-        return [
-            [ '0000',  0.0 ],
-            [ '-0000', 0.0 ],
-            [ '10',   10.0 ],
-            [ '-10', -10.0 ],
-            [ '.0000', 0.0 ],
-            [ '.10',  0.10 ],
-            [ '00.00', 0.0 ],
-            [ '0.1',   0.1 ],
-            [ '-0.1', -0.1 ],
-        ];
     }
 }
