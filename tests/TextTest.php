@@ -7,8 +7,8 @@ class TextTest extends TestCase
     /**
      * @covers \Enginedata\Text::__construct
      */
-    public function testTextToArray(){
-
+    public function testTextToArray()
+    {
         $text_data = [
             '<<',
             'TestData',
@@ -20,10 +20,9 @@ class TextTest extends TestCase
 
         $text = new Text("<<\n\t/TestData\n\t<<\n\t\t/Values [ 0.0 ]\n\t>>\n>>");
 
-        for( $text->rewind(); $text->valid(); $text->next() ) {
-            $this->assertSame($text->current(),$text_data[$text->key()]);
+        for ($text->rewind(); $text->valid(); $text->next()) {
+            $this->assertSame($text->current(), $text_data[$text->key()]);
         }
-
     }
 
     /**
@@ -31,11 +30,13 @@ class TextTest extends TestCase
      * @covers \Enginedata\Text::__construct
      * @dataProvider resourcesTextData
      */
-    public function testResourcesTextToArray($text){
+    public function testResourcesTextToArray($text)
+    {
         $this->assertInstanceOf(\ArrayIterator::class, new Text($text));
     }
 
-    public function resourcesTextData(){
+    public function resourcesTextData()
+    {
         $resources_dir = __DIR__ . DIRECTORY_SEPARATOR . 'resources' . DIRECTORY_SEPARATOR;
 
         $textData = [
@@ -46,7 +47,7 @@ class TextTest extends TestCase
             ]
         ];
 
-        foreach( $textData as $text ){
+        foreach ($textData as $text) {
             yield $text;
         }
     }

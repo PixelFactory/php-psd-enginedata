@@ -1,6 +1,6 @@
 <?php
 
-use \Enginedata\LineParser;
+use Enginedata\LineParser;
 
 class LineParserTest extends TestCase
 {
@@ -10,12 +10,14 @@ class LineParserTest extends TestCase
      * @param $expected
      * @throws ReflectionException
      */
-    public function testInitializeParsers($parsers, $expected){
+    public function testInitializeParsers($parsers, $expected)
+    {
         $line_parser = new LineParser($parsers);
         $this->assertEquals($this->getPrivateProperty($line_parser, 'parsers'), $expected);
     }
 
-    public function testParse(){
+    public function testParse()
+    {
         $this->assertEquals(1, 1);
     }
 
@@ -24,12 +26,14 @@ class LineParserTest extends TestCase
      * @param $parsers
      * @param $expected
      */
-    public function testGetParsers($parsers, $expected){
+    public function testGetParsers($parsers, $expected)
+    {
         $line_parser = new LineParser($parsers);
         $this->assertEquals($line_parser->getParsers(), array_keys($expected));
     }
 
-    public function testGetParser(){
+    public function testGetParser()
+    {
         $data = 'Data String';
 
         $line_parser = $this->getMockBuilder(LineParser::class)
@@ -45,7 +49,8 @@ class LineParserTest extends TestCase
         $line_parser->getParser($data);
     }
 
-    public function testGetParserInstance(){
+    public function testGetParserInstance()
+    {
         $this->assertEquals(1, 1);
     }
 

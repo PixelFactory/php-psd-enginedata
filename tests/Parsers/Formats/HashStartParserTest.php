@@ -1,7 +1,7 @@
 <?php
 
-class HashStartParserTest extends TestCaseParser {
-
+class HashStartParserTest extends TestCaseParser
+{
     public function testExpression()
     {
         $this->checkExpressionOnAllData([4]);
@@ -30,6 +30,5 @@ class HashStartParserTest extends TestCaseParser {
         $staticPropertiesAfter = $reflectionClass->getStaticProperties();
         $this->assertArrayHasKey('multiLineArray', $staticPropertiesAfter);
         $this->assertSame($staticPropertiesAfter['multiLineArray'], $staticPropertiesBefore['multiLineArray']  + 1);
-
     }
 }

@@ -8,8 +8,8 @@ use Exception;
 /**
  * Class LineParser contains 'Object Pool' all parsers
  */
-class LineParser implements ParseLine{
-
+class LineParser implements ParseLine
+{
     /**
      * @var array Parsers objects
      */
@@ -26,11 +26,10 @@ class LineParser implements ParseLine{
      * @return bool
      * @throws Exception
      */
-    public function parse( Node $node, $line ): bool
+    public function parse(Node $node, $line): bool
     {
-        foreach ( $this->getParsers() as $parser )
-        {
-            if( $this->getParser( $parser )->startParsing( $node, $line ) ){
+        foreach ($this->getParsers() as $parser) {
+            if ($this->getParser($parser)->startParsing($node, $line)) {
                 return true;
             }
         }
@@ -43,30 +42,30 @@ class LineParser implements ParseLine{
      */
     public function getParsers(): array
     {
-        return array_keys( $this->parsers );
+        return array_keys($this->parsers);
     }
 
     /**
      * @param string $name Parser class name
      * @return Parser
      */
-    public function getParser( $name ): Parser
+    public function getParser($name): Parser
     {
-        return $this->getParserInstance( $name );
+        return $this->getParserInstance($name);
     }
 
     /**
      * @param $name
      * @return Parser|null
      */
-    protected function getParserInstance( $name ): Parser
+    protected function getParserInstance($name): Parser
     {
-        if(!isset($this->parsers[$name]) ) {
+        if (!isset($this->parsers[$name])) {
             return null;
         }
 
-        if( is_string($this->parsers[$name]) ){
-            $this->parsers[$name] = new $this->parsers[$name];
+        if (is_string($this->parsers[$name])) {
+            $this->parsers[$name] = new $this->parsers[$name]();
         }
 
         return $this->parsers[$name];

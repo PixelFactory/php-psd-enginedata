@@ -4,12 +4,12 @@ namespace Enginedata\Parsers;
 
 use Enginedata\Node;
 
-abstract class Parser{
-
+abstract class Parser
+{
     protected static int $multiLineArray = 0;
 
     abstract public function expression(): string;
-    abstract protected function parse( Node $node, $line, $matches );
+    abstract protected function parse(Node $node, $line, $matches);
 
 
     /**
@@ -17,15 +17,14 @@ abstract class Parser{
      * @param $line
      * @return bool
      */
-    public function startParsing( Node $node, $line )
+    public function startParsing(Node $node, $line)
     {
-        $status = preg_match( $this->expression() , $line, $matches );
+        $status = preg_match($this->expression(), $line, $matches);
 
-        if( $status === 1 )
-        {
-            $this->parse( $node, $line, $matches );
+        if ($status === 1) {
+            $this->parse($node, $line, $matches);
             return true;
-        }else{
+        } else {
             return false;
         }
     }

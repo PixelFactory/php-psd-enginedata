@@ -1,7 +1,7 @@
 <?php
 
-class StringParserTest extends TestCaseParser {
-
+class StringParserTest extends TestCaseParser
+{
     public function testExpression()
     {
         $this->checkExpressionOnAllData([9,10]);
@@ -24,7 +24,7 @@ class StringParserTest extends TestCaseParser {
                 [ $this->equalTo('Name'), $this->equalTo('Wrong String?') ]
             );
 
-        $this->startParsingTest(9,  $node);
+        $this->startParsingTest(9, $node);
         $this->startParsingTest(10, $node);
     }
 }

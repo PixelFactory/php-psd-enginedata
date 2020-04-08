@@ -5,18 +5,18 @@ namespace Enginedata\Parsers\Formats;
 use Enginedata\Node;
 use Enginedata\Parsers\Parser;
 
-class BooleanParser extends Parser {
-
+class BooleanParser extends Parser
+{
     public function expression(): string
     {
         return '/^([A-Z0-9]+) (true|false)$/i';
     }
 
-    protected function parse(Node $node, $line, $matches )
+    protected function parse(Node $node, $line, $matches)
     {
         $name = $matches[1];
-        $value = $matches[2] === 'true'? TRUE : FALSE;
+        $value = $matches[2] === 'true' ? true : false;
 
-        $node->setValue( $name, $value );
+        $node->setValue($name, $value);
     }
 }

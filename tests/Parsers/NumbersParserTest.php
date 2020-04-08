@@ -1,15 +1,17 @@
 <?php
 
+use Enginedata\Parsers\NumbersParser;
+
 class NumbersParserTest extends TestCase
 {
     /**
-     * @var \Enginedata\Parsers\NumbersParser $parser
+     * @var NumbersParser $parser
      */
     protected $parser;
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
-        $this->parser = $this->getMockForAbstractClass(\Enginedata\Parsers\NumbersParser::class);
+        $this->parser = $this->getMockForAbstractClass(NumbersParser::class);
     }
 
     /**
@@ -17,11 +19,13 @@ class NumbersParserTest extends TestCase
      * @param $num
      * @param $expected
      */
-    public function testConvertToNumber($num, $expected){
+    public function testConvertToNumber($num, $expected)
+    {
             $this->assertSame($this->parser->convertToNumber($num), $expected);
     }
 
-    public function numbersToConvertProvider(){
+    public function numbersToConvertProvider()
+    {
         return [
             [ '0000',  0.0 ],
             [ '-0000', 0.0 ],

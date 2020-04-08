@@ -2,12 +2,14 @@
 
 class NodeTest extends TestCase
 {
-    public function testGetNode(){
+    public function testGetNode()
+    {
         $node = new \Enginedata\Node();
         $this->assertSame($node->getNode(), []);
     }
 
-    public function testSetValue(){
+    public function testSetValue()
+    {
         $node = new \Enginedata\Node();
 
         $node->setValue('name_1');
@@ -25,7 +27,8 @@ class NodeTest extends TestCase
         ]]]);
     }
 
-    public function testParentNode(){
+    public function testParentNode()
+    {
         $node = new \Enginedata\Node();
 
         $node->setValue('name_1');

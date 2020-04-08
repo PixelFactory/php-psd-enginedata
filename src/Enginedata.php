@@ -5,20 +5,20 @@ namespace Enginedata;
 use Exception;
 use SeekableIterator;
 
-class Enginedata{
-
+class Enginedata
+{
     protected Node $node;
     protected ParseLine $parser;
     protected SeekableIterator $text;
 
-    public static function load( $file )
+    public static function load($file)
     {
-        $text = file_get_contents( $file );
-        return new self( $text );
+        $text = file_get_contents($file);
+        return new self($text);
     }
 
 
-    public function __construct( $text, SeekableIterator $textObject = null, ParseLine $parserObject = null )
+    public function __construct($text, SeekableIterator $textObject = null, ParseLine $parserObject = null)
     {
         $textClass = $this->getConfig('text');
         $lineParserClass = $this->getConfig('lineParser');
@@ -35,13 +35,12 @@ class Enginedata{
      */
     public function parse()
     {
-        for( $this->text->rewind(); $this->text->valid(); $this->text->next() )
-        {
+        for ($this->text->rewind(); $this->text->valid(); $this->text->next()) {
             $line = $this->text->current();
             try {
                 $this->parser->parse($this->node, $line);
-            }catch (Exception $ex){
-                throw new Exception($ex->getMessage() . ' Line: ' . ($this->text->key() + 1) );
+            } catch (Exception $ex) {
+                throw new Exception($ex->getMessage() . ' Line: ' . ($this->text->key() + 1));
             }
         }
 

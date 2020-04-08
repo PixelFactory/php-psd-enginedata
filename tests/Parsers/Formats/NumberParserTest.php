@@ -1,7 +1,7 @@
 <?php
 
-class NumberParserTest extends TestCaseParser {
-
+class NumberParserTest extends TestCaseParser
+{
     public function testExpression()
     {
         $this->checkExpressionOnAllData([7]);

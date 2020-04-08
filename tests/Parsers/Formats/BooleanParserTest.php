@@ -1,8 +1,7 @@
 <?php
 
-class BooleanParserTest extends TestCaseParser {
-
-
+class BooleanParserTest extends TestCaseParser
+{
     public function testExpression()
     {
         $this->checkExpressionOnAllData([0]);

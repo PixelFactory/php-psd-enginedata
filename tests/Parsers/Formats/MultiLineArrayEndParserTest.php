@@ -1,7 +1,7 @@
 <?php
 
-class MultiLineArrayEndParserTest extends TestCaseParser {
-
+class MultiLineArrayEndParserTest extends TestCaseParser
+{
     public function testExpression()
     {
         $this->checkExpressionOnAllData([6]);

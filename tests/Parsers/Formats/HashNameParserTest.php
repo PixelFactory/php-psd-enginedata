@@ -1,7 +1,7 @@
 <?php
 
-class HashNameParserTest extends TestCaseParser {
-
+class HashNameParserTest extends TestCaseParser
+{
     public function testExpression()
     {
         $this->checkExpressionOnAllData([3]);

@@ -5,26 +5,25 @@ namespace Enginedata\Parsers\Formats;
 use Enginedata\Node;
 use Enginedata\Parsers\Parser;
 
-class StringParser extends Parser {
-
+class StringParser extends Parser
+{
     public function expression(): string
     {
         return '/^([A-Z0-9]+) \(\xFE\xFF(.*)/i';
     }
 
-    protected function parse( Node $node, $line, $matches )
+    protected function parse(Node $node, $line, $matches)
     {
         $name = $matches[1];
 
         // Delete last bracket
-        $string_u16 = substr($matches[2], 0 , -1);
+        $string_u16 = substr($matches[2], 0, -1);
         // Convert sting
         $string_u8 = @iconv('UTF-16BE', 'UTF-8', $string_u16);
 
-        if( $string_u8 === false )
-        {
+        if ($string_u8 === false) {
             $str = $string_u16;
-        }else{
+        } else {
             $str = trim($string_u8);
         }
 

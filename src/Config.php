@@ -2,7 +2,8 @@
 
 namespace Enginedata;
 
-class Config{
+class Config
+{
     public const DEFAULT_CONFIG = [
         'text' => Text::class,
         'lineParser' => LineParser::class,

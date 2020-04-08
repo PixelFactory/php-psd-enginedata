@@ -1,18 +1,17 @@
 <?php
 
+use Enginedata\Parsers\Parser;
+
 class ParserTest extends TestCase
 {
     /**
-     * @var \Enginedata\Parsers\Parser $parser
+     * @var Parser $parser
      */
     protected $parser;
 
-    /**
-     * @throws ReflectionException
-     */
-    protected function setUp() : void
+    protected function setUp(): void
     {
-        $this->parser = $this->getMockForAbstractClass(\Enginedata\Parsers\Parser::class);
+        $this->parser = $this->getMockForAbstractClass(Parser::class);
 
         // Hash start regexp
         $this->parser->expects($this->any())->method('expression')->willReturn('/^<<$/');
@@ -24,7 +23,8 @@ class ParserTest extends TestCase
      * @covers \Enginedata\Parsers\Parser::startParsing
      * @throws ReflectionException
      */
-    public function testStartParsing(){
+    public function testStartParsing()
+    {
         $node = $this->getMockBuilder(\Enginedata\Node::class)->getMock();
 
         /**
@@ -32,6 +32,5 @@ class ParserTest extends TestCase
          */
         $this->assertSame($this->parser->startParsing($node, '<<'), true);
         $this->assertSame($this->parser->startParsing($node, 'line'), false);
-
     }
 }
