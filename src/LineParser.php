@@ -15,9 +15,9 @@ class LineParser implements ParseLine{
      */
     protected array $parsers;
 
-    public function __construct()
+    public function __construct($parsers)
     {
-        $this->parsers = Enginedata::getConfig('parsers');
+        $this->parsers = $parsers;
     }
 
     /**

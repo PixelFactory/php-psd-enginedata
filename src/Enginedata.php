@@ -20,11 +20,13 @@ class Enginedata{
 
     public function __construct( $text, SeekableIterator $textObject = null, ParseLine $parserObject = null )
     {
-        $textClass = static::getConfig('text');
-        $lineParserClass = static::getConfig('lineParser');
+        $textClass = $this->getConfig('text');
+        $lineParserClass = $this->getConfig('lineParser');
+
+        $parsers = $this->getConfig('parsers');
 
         $this->text = $textObject ?? new $textClass($text);
-        $this->parser = $parserObject ?? new $lineParserClass();
+        $this->parser = $parserObject ?? new $lineParserClass($parsers);
         $this->node = new Node();
     }
 
@@ -56,7 +58,7 @@ class Enginedata{
         return $this->node->getNode();
     }
 
-    public static function getConfig($key): array
+    public function getConfig($key): array
     {
         return Config::DEFAULT_CONFIG[$key];
     }

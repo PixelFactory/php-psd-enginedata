@@ -1,7 +1,5 @@
 <?php
 
-use PHPUnit\Framework\TestCase;
-
 class NumbersParserTest extends TestCase
 {
     /**
@@ -15,7 +13,7 @@ class NumbersParserTest extends TestCase
     }
 
     /**
-     * @dataProvider numbersToConvert
+     * @dataProvider numbersToConvertProvider
      * @param $num
      * @param $expected
      */
@@ -23,7 +21,7 @@ class NumbersParserTest extends TestCase
             $this->assertSame($this->parser->convertToNumber($num), $expected);
     }
 
-    public function numbersToConvert(){
+    public function numbersToConvertProvider(){
         return [
             [ '0000',  0.0 ],
             [ '-0000', 0.0 ],

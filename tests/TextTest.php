@@ -1,6 +1,5 @@
 <?php
 
-use PHPUnit\Framework\TestCase;
 use Enginedata\Text;
 
 class TextTest extends TestCase
