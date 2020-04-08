@@ -1,6 +1,8 @@
 <?php
 
 use Enginedata\LineParser;
+use Enginedata\Parsers\Formats\BooleanParser;
+use Enginedata\Parsers\Formats\EmptyStringParser;
 
 class LineParserTest extends TestCase
 {
@@ -49,9 +51,35 @@ class LineParserTest extends TestCase
         $line_parser->getParser($data);
     }
 
-    public function testGetParserInstance()
+    /**
+     * @dataProvider realParserListProvider
+     * @param $name
+     * @param $parser
+     * @param $expected
+     * @throws ReflectionException
+     */
+    public function testGetParserInstance($name, $parser, $expected)
     {
-        $this->assertEquals(1, 1);
+        $line_parser = new LineParser([ $name => $parser ]);
+
+        $this->assertNull($this->callProtectedMethod($line_parser, 'getParserInstance', ['SimpleParser']));
+
+        $this->assertInstanceOf(
+            $expected,
+            $this->callProtectedMethod($line_parser, 'getParserInstance', [$name])
+        );
+    }
+
+    public function realParserListProvider()
+    {
+        $parsers = [
+            BooleanParser::class => BooleanParser::class,
+            EmptyStringParser::class => EmptyStringParser::class
+        ];
+
+        foreach ($parsers as $name => $parser) {
+            yield [ $name, $parser, $parser ];
+        }
     }
 
     public function parsersListProvider()

@@ -28,8 +28,9 @@ class LineParser implements ParseLine
      */
     public function parse(Node $node, $line): bool
     {
-        foreach ($this->getParsers() as $parser) {
-            if ($this->getParser($parser)->startParsing($node, $line)) {
+        foreach ($this->getParsers() as $parserName) {
+            $parser = $this->getParser($parserName);
+            if ($parser && $parser->startParsing($node, $line)) {
                 return true;
             }
         }
@@ -47,9 +48,9 @@ class LineParser implements ParseLine
 
     /**
      * @param string $name Parser class name
-     * @return Parser
+     * @return Parser|null
      */
-    public function getParser($name): Parser
+    public function getParser($name): ?Parser
     {
         return $this->getParserInstance($name);
     }
@@ -58,7 +59,7 @@ class LineParser implements ParseLine
      * @param $name
      * @return Parser|null
      */
-    protected function getParserInstance($name): Parser
+    protected function getParserInstance($name): ?Parser
     {
         if (!isset($this->parsers[$name])) {
             return null;

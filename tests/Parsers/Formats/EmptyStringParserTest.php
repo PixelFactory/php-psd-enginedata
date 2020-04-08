@@ -6,4 +6,13 @@ class EmptyStringParserTest extends TestCaseParser
     {
         $this->checkExpressionOnAllData([1]);
     }
+
+    /**
+     * @throws ReflectionException
+     */
+    public function testParse()
+    {
+        $node = $this->getMockBuilder(\Enginedata\Node::class)->getMock();
+        $this->startParsingTest(1, $node);
+    }
 }

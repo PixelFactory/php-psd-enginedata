@@ -8,5 +8,5 @@ interface ParseLine
 {
     public function parse(Node $node, $line): bool;
     public function getParsers(): array;
-    public function getParser($name): Parser;
+    public function getParser($name): ?Parser;
 }

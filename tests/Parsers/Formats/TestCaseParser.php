@@ -32,23 +32,6 @@ class TestCaseParser extends TestCase
     }
 
     /**
-     * @param $class_name
-     * @param $method_name
-     * @param array $params
-     * @return mixed
-     * @throws ReflectionException
-     */
-    protected function callProtectedMethod($class_name, $method_name, array $params = [])
-    {
-        $object = new $class_name();
-        $reflector = new ReflectionClass($class_name);
-        $method = $reflector->getMethod($method_name);
-        $method->setAccessible(true);
-
-        return $method->invokeArgs($object, $params);
-    }
-
-    /**
      * @param $line_number
      * @param $node
      * @throws ReflectionException
@@ -60,6 +43,6 @@ class TestCaseParser extends TestCase
         $status = preg_match(self::$parser->expression(), $line, $matches);
         $this->assertSame($status, 1);
 
-        $this->callProtectedMethod(get_class(self::$parser), 'parse', [$node, $line, $matches]);
+        $this->callProtectedMethod(self::$parser, 'parse', [$node, $line, $matches]);
     }
 }
