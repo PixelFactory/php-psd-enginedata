@@ -2,7 +2,7 @@
 
 namespace Enginedata\Parsers\Formats;
 
-use Enginedata\Node;
+use Enginedata\NodeInterface;
 use Enginedata\Parsers\NumbersParser;
 
 class SingleLineArrayParser extends NumbersParser
@@ -12,7 +12,7 @@ class SingleLineArrayParser extends NumbersParser
         return '/^([A-Z0-9]+) \[(.*)\]$/i';
     }
 
-    protected function parse(Node $node, $line, $matches)
+    protected function parse(NodeInterface $node, $line, $matches)
     {
         $name = $matches[1];
         $values = explode(' ', trim($matches[2]));

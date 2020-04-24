@@ -2,7 +2,7 @@
 
 namespace Enginedata\Parsers\Formats;
 
-use Enginedata\Node;
+use Enginedata\NodeInterface;
 use Enginedata\Parsers\Parser;
 
 class HashNameParser extends Parser
@@ -12,7 +12,7 @@ class HashNameParser extends Parser
         return '/^([A-Z0-9]+)$/i';
     }
 
-    protected function parse(Node $node, $line, $matches)
+    protected function parse(NodeInterface $node, $line, $matches)
     {
         $node->setValue(trim($line));
     }

@@ -8,7 +8,7 @@ use Exception;
 /**
  * Class LineParser contains 'Object Pool' all parsers
  */
-class LineParser implements ParseLine
+class LineParser implements LineParserInterface
 {
     /**
      * @var array Parsers objects
@@ -21,12 +21,12 @@ class LineParser implements ParseLine
     }
 
     /**
-     * @param Node $node
+     * @param NodeInterface $node
      * @param $line
      * @return bool
      * @throws Exception
      */
-    public function parse(Node $node, $line): bool
+    public function parse(NodeInterface $node, $line): bool
     {
         foreach ($this->getParsers() as $parserName) {
             $parser = $this->getParser($parserName);

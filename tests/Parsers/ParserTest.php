@@ -28,7 +28,7 @@ class ParserTest extends TestCase
         $node = $this->getMockBuilder(\Enginedata\Node::class)->getMock();
 
         /**
-         * @var \Enginedata\Node $node
+         * @var \Enginedata\NodeInterface $node
          */
         $this->assertSame($this->parser->startParsing($node, '<<'), true);
         $this->assertSame($this->parser->startParsing($node, 'line'), false);

@@ -2,13 +2,13 @@
 
 namespace Enginedata;
 
-class Node
+class Node implements NodeInterface
 {
 
     private array $node = [];
     private array $path = [];
 
-    public function getNode()
+    public function getNode(): array
     {
         return $this->node;
     }

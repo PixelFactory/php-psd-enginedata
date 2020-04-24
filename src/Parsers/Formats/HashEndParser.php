@@ -2,7 +2,7 @@
 
 namespace Enginedata\Parsers\Formats;
 
-use Enginedata\Node;
+use Enginedata\NodeInterface;
 use Enginedata\Parsers\Parser;
 
 class HashEndParser extends Parser
@@ -12,7 +12,7 @@ class HashEndParser extends Parser
         return '/^>>$/';
     }
 
-    protected function parse(Node $node, $line, $match)
+    protected function parse(NodeInterface $node, $line, $match)
     {
         $node->parentNode();
         self::$multiLineArray--;

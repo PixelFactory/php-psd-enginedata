@@ -2,22 +2,22 @@
 
 namespace Enginedata\Parsers;
 
-use Enginedata\Node;
+use Enginedata\NodeInterface;
 
 abstract class Parser
 {
     protected static int $multiLineArray = 0;
 
     abstract public function expression(): string;
-    abstract protected function parse(Node $node, $line, $matches);
+    abstract protected function parse(NodeInterface $node, $line, $matches);
 
 
     /**
-     * @param Node $node
+     * @param NodeInterface $node
      * @param $line
      * @return bool
      */
-    public function startParsing(Node $node, $line)
+    public function startParsing(NodeInterface $node, $line)
     {
         $status = preg_match($this->expression(), $line, $matches);
 

@@ -4,9 +4,9 @@ namespace Enginedata;
 
 use Enginedata\Parsers\Parser;
 
-interface ParseLine
+interface LineParserInterface
 {
-    public function parse(Node $node, $line): bool;
+    public function parse(NodeInterface $node, $line): bool;
     public function getParsers(): array;
     public function getParser($name): ?Parser;
 }

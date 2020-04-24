@@ -2,7 +2,7 @@
 
 namespace Enginedata\Parsers\Formats;
 
-use Enginedata\Node;
+use Enginedata\NodeInterface;
 use Enginedata\Parsers\Parser;
 
 class MultiLineArrayEndParser extends Parser
@@ -12,7 +12,7 @@ class MultiLineArrayEndParser extends Parser
         return '/^\]$/';
     }
 
-    protected function parse(Node $node, $line, $matches)
+    protected function parse(NodeInterface $node, $line, $matches)
     {
         $node->parentNode();
         self::$multiLineArray = 0;

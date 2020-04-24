@@ -2,7 +2,7 @@
 
 namespace Enginedata\Parsers\Formats;
 
-use Enginedata\Node;
+use Enginedata\NodeInterface;
 use Enginedata\Parsers\Parser;
 
 class BooleanParser extends Parser
@@ -12,7 +12,7 @@ class BooleanParser extends Parser
         return '/^([A-Z0-9]+) (true|false)$/i';
     }
 
-    protected function parse(Node $node, $line, $matches)
+    protected function parse(NodeInterface $node, $line, $matches)
     {
         $name = $matches[1];
         $value = $matches[2] === 'true' ? true : false;

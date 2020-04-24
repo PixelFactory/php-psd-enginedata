@@ -2,7 +2,7 @@
 
 namespace Enginedata\Parsers\Formats;
 
-use Enginedata\Node;
+use Enginedata\NodeInterface;
 use Enginedata\Parsers\Parser;
 
 class EmptyStringParser extends Parser
@@ -12,7 +12,7 @@ class EmptyStringParser extends Parser
         return '/^$/i';
     }
 
-    protected function parse(Node $node, $line, $matches)
+    protected function parse(NodeInterface $node, $line, $matches)
     {
     }
 }

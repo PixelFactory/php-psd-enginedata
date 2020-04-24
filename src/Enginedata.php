@@ -7,8 +7,8 @@ use SeekableIterator;
 
 class Enginedata
 {
-    protected Node $node;
-    protected ParseLine $parser;
+    protected NodeInterface $node;
+    protected LineParserInterface $parser;
     protected SeekableIterator $text;
 
     public static function load($file)
@@ -18,16 +18,31 @@ class Enginedata
     }
 
 
-    public function __construct($text, SeekableIterator $textObject = null, ParseLine $parserObject = null)
-    {
-        $textClass = $this->getConfig('text');
-        $lineParserClass = $this->getConfig('lineParser');
+    public function __construct(
+        $text,
+        NodeInterface $nodeObject = null,
+        SeekableIterator $textObject = null,
+        LineParserInterface $parserObject = null
+    ) {
+        if (!isset($nodeObject)) {
+            $nodeClass = $this->getConfig('node');
+            $nodeObject = new $nodeClass();
+        }
 
-        $parsers = $this->getConfig('parsers');
+        if (!isset($textObject)) {
+            $textClass = $this->getConfig('text');
+            $textObject = new $textClass($text);
+        }
 
-        $this->text = $textObject ?? new $textClass($text);
-        $this->parser = $parserObject ?? new $lineParserClass($parsers);
-        $this->node = new Node();
+        if (!isset($parserObject)) {
+            $parsers = $this->getConfig('parsers');
+            $lineParserClass = $this->getConfig('lineParser');
+            $parserObject = new $lineParserClass($parsers);
+        }
+
+        $this->node = $nodeObject;
+        $this->text = $textObject;
+        $this->parser = $parserObject;
     }
 
     /**
