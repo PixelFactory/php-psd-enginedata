@@ -1,6 +1,8 @@
 <?php
 
+use Enginedata\Node;
 use Enginedata\LineParser;
+use Enginedata\Parsers\Parser;
 use Enginedata\Parsers\Formats\BooleanParser;
 use Enginedata\Parsers\Formats\EmptyStringParser;
 
@@ -18,9 +20,52 @@ class LineParserTest extends TestCase
         $this->assertEquals($this->getPrivateProperty($line_parser, 'parsers'), $expected);
     }
 
+    /**
+     * @throws Exception
+     */
     public function testParse()
     {
-        $this->assertEquals(1, 1);
+        $node = $this->createMock(Node::class);
+
+        $line_parser = $this->getMockBuilder(LineParser::class)
+            ->disableOriginalConstructor()
+            ->onlyMethods(['getParsers', 'getParser'])
+            ->getMock();
+
+        $parser = $this->getMockBuilder(Parser::class)
+            ->onlyMethods(['startParsing'])
+            ->getMockForAbstractClass();
+
+        $parser->expects($this->once())
+            ->method('startParsing')
+            ->will($this->returnValue(true));
+
+        $line_parser->expects($this->once())
+            ->method('getParsers')
+            ->will($this->returnValue([Parser::class => $parser]));
+
+        $line_parser->expects($this->once())
+            ->method('getParser')
+            ->will($this->returnArgument(0));
+
+        /** @var LineParser $line_parser */
+        $line_parser->parse($node, 'Test Line');
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testParseException()
+    {
+        $node = $this->createMock(Node::class);
+        $line_parser = $this->getMockBuilder(LineParser::class)
+            ->disableOriginalConstructor()
+            ->onlyMethods(['getParsers'])
+            ->getMock();
+
+        $this->expectException(Exception::class);
+        /** @var LineParser $line_parser */
+        $line_parser->parse($node, 'Test Line');
     }
 
     /**

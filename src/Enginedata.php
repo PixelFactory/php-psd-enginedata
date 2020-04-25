@@ -7,16 +7,11 @@ use SeekableIterator;
 
 class Enginedata
 {
+    protected string $config = Config::class;
+
     protected NodeInterface $node;
-    protected LineParserInterface $parser;
     protected SeekableIterator $text;
-
-    public static function load($file)
-    {
-        $text = file_get_contents($file);
-        return new self($text);
-    }
-
+    protected LineParserInterface $parser;
 
     public function __construct(
         $text,
@@ -51,15 +46,24 @@ class Enginedata
     public function parse()
     {
         for ($this->text->rewind(); $this->text->valid(); $this->text->next()) {
-            $line = $this->text->current();
-            try {
-                $this->parser->parse($this->node, $line);
-            } catch (Exception $ex) {
-                throw new Exception($ex->getMessage() . ' Line: ' . ($this->text->key() + 1));
-            }
+            $this->parseLine($this->text->current(), $this->text->key() + 1);
         }
 
         return $this->getNode();
+    }
+
+    /**
+     * @param $line
+     * @param $lineNumber
+     * @throws Exception
+     */
+    protected function parseLine($line, $lineNumber)
+    {
+        try {
+            $this->parser->parse($this->node, $line);
+        } catch (Exception $ex) {
+            throw new Exception($ex->getMessage() . ' Line: ' . $lineNumber);
+        }
     }
 
     public function result()
@@ -72,8 +76,10 @@ class Enginedata
         return $this->node->getNode();
     }
 
-    public function getConfig($key): array
+    public function getConfig($key)
     {
-        return Config::DEFAULT_CONFIG[$key];
+        /** @var Config $configClass */
+        $configClass = $this->config;
+        return $configClass::DEFAULT_CONFIG[$key];
     }
 }

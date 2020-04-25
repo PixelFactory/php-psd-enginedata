@@ -13,13 +13,13 @@ class Node implements NodeInterface
         return $this->node;
     }
 
-    public function setValue($name, $value = null)
+    public function setValue($key, $value = null)
     {
         $node = &$this->getLastNode();
-        $node[$name] = $value;
+        $node[$key] = $value;
 
         if ($value === null) {
-            $this->path[] = $name;
+            $this->path[] = $key;
         }
     }
 

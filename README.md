@@ -25,7 +25,8 @@ require "vendor/autoload.php";
 
 use Enginedata\Enginedata;
 
-$parser = Enginedata::load('filename');
+$data = file_get_contents('filename');
+$parser = new Enginedata($data);
 
 $data = $parser->parse();
 

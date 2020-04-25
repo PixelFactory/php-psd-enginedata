@@ -21,6 +21,7 @@ class TestCase extends Test
     /**
      * @param $obj
      * @param $propertyName
+     * @param $propertyVal
      * @throws ReflectionException
      */
     public function setPrivateProperty($obj, $propertyName, $propertyVal)
@@ -33,15 +34,15 @@ class TestCase extends Test
 
     /**
      * @param $obj
-     * @param $method_name
+     * @param $methodName
      * @param array $params
      * @return mixed
      * @throws ReflectionException
      */
-    protected function callProtectedMethod($obj, $method_name, array $params = [])
+    protected function callProtectedMethod($obj, $methodName, array $params = [])
     {
         $reflector = new ReflectionObject($obj);
-        $method = $reflector->getMethod($method_name);
+        $method = $reflector->getMethod($methodName);
         $method->setAccessible(true);
 
         return $method->invokeArgs($obj, $params);
