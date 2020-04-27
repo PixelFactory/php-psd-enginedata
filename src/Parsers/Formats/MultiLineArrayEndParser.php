@@ -15,6 +15,5 @@ class MultiLineArrayEndParser extends Parser
     protected function parse(NodeInterface $node, $line, $matches)
     {
         $node->parentNode();
-        self::$multiLineArray = 0;
     }
 }

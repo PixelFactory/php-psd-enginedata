@@ -6,7 +6,7 @@ use Enginedata\NodeInterface;
 
 abstract class Parser
 {
-    protected static int $multiLineArray = 0;
+    protected static ?string $hashName = null;
 
     abstract public function expression(): string;
     abstract protected function parse(NodeInterface $node, $line, $matches);

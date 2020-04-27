@@ -14,7 +14,7 @@ class HashStartParser extends Parser
 
     protected function parse(NodeInterface $node, $line, $matches)
     {
-        $node->addNode(self::$multiLineArray === 1);
-        self::$multiLineArray++;
+        $node->addNode(static::$hashName);
+        static::$hashName = null;
     }
 }

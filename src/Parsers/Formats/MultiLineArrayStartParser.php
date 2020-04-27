@@ -15,7 +15,7 @@ class MultiLineArrayStartParser extends Parser
     protected function parse(NodeInterface $node, $line, $matches)
     {
         $name = $matches[1];
-        $node->setValue($name);
-        self::$multiLineArray = 1;
+
+        $node->addNode($name);
     }
 }

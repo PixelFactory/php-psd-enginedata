@@ -15,6 +15,5 @@ class HashEndParser extends Parser
     protected function parse(NodeInterface $node, $line, $match)
     {
         $node->parentNode();
-        self::$multiLineArray--;
     }
 }

@@ -16,12 +16,13 @@ class SingleLineArrayParser extends NumbersParser
     {
         $name = $matches[1];
         $values = explode(' ', trim($matches[2]));
-        $value = [];
+
+        $node->addNode($name);
 
         foreach ($values as $num) {
-            $value[] = $this->convertToNumber($num);
+            $node->addValue($this->convertToNumber($num));
         }
 
-        $node->setValue($name, $value);
+        $node->parentNode();
     }
 }

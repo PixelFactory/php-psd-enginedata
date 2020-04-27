@@ -14,6 +14,6 @@ class HashNameParser extends Parser
 
     protected function parse(NodeInterface $node, $line, $matches)
     {
-        $node->setValue(trim($line));
+        static::$hashName = $line;
     }
 }

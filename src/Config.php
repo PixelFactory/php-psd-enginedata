@@ -5,6 +5,7 @@ namespace Enginedata;
 class Config
 {
     public const DEFAULT_CONFIG = [
+        'node' => Node::class,
         'text' => Text::class,
         'lineParser' => LineParser::class,
         'parsers' => [
@@ -18,6 +19,6 @@ class Config
             Parsers\Formats\NumberParser::class,
             Parsers\Formats\SingleLineArrayParser::class,
             Parsers\Formats\StringParser::class,
-        ]
+        ],
     ];
 }
