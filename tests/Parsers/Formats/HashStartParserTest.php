@@ -13,22 +13,19 @@ class HashStartParserTest extends TestCaseParser
     public function testParse()
     {
         $node = $this->getMockBuilder(\Enginedata\Node::class)->getMock();
+        $value = 'Test Value';
 
         $node->expects($this->once())
             ->method('addNode')
             ->with(
-                $this->isFalse()
+                $this->equalTo($value)
             );
 
         $reflectionClass = new ReflectionClass(get_class(self::$parser));
-
-        $staticPropertiesBefore = $reflectionClass->getStaticProperties();
-        $this->assertArrayHasKey('multiLineArray', $staticPropertiesBefore);
+        $this->setPrivateProperty($reflectionClass, 'hashName', $value);
 
         $this->startParsingTest(4, $node);
 
-        $staticPropertiesAfter = $reflectionClass->getStaticProperties();
-        $this->assertArrayHasKey('multiLineArray', $staticPropertiesAfter);
-        $this->assertSame($staticPropertiesAfter['multiLineArray'], $staticPropertiesBefore['multiLineArray']  + 1);
+        $this->assertSame($reflectionClass->getStaticProperties()['hashName'], null);
     }
 }

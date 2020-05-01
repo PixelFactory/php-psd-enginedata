@@ -10,9 +10,9 @@ class TestCase extends Test
      * @return mixed
      * @throws ReflectionException
      */
-    public function getPrivateProperty($obj, $propertyName)
+    protected function getPrivateProperty($obj, $propertyName)
     {
-        $reflection = new ReflectionObject($obj);
+        $reflection = $this->getReflectionObject($obj);
         $property = $reflection->getProperty($propertyName);
         $property->setAccessible(true);
         return $property->getValue($obj);
@@ -24,9 +24,9 @@ class TestCase extends Test
      * @param $propertyVal
      * @throws ReflectionException
      */
-    public function setPrivateProperty($obj, $propertyName, $propertyVal)
+    protected function setPrivateProperty($obj, $propertyName, $propertyVal)
     {
-        $reflection = new ReflectionObject($obj);
+        $reflection = $this->getReflectionObject($obj);
         $property = $reflection->getProperty($propertyName);
         $property->setAccessible(true);
         $property->setValue($obj, $propertyVal);
@@ -41,10 +41,19 @@ class TestCase extends Test
      */
     protected function callProtectedMethod($obj, $methodName, array $params = [])
     {
-        $reflector = new ReflectionObject($obj);
+        $reflector = $this->getReflectionObject($obj);
         $method = $reflector->getMethod($methodName);
         $method->setAccessible(true);
 
         return $method->invokeArgs($obj, $params);
+    }
+
+    protected function getReflectionObject($obj)
+    {
+        if ($obj instanceof Reflector) {
+            return $obj;
+        }
+
+        return new ReflectionObject($obj);
     }
 }

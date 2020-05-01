@@ -15,16 +15,11 @@ class MultiLineArrayStartParserTest extends TestCaseParser
         $node = $this->getMockBuilder(\Enginedata\Node::class)->getMock();
 
         $node->expects($this->once())
-            ->method('setValue')
+            ->method('addNode')
             ->with(
                 $this->equalTo('RunArray')
             );
 
         $this->startParsingTest(5, $node);
-
-        $staticProperties = (new ReflectionClass(get_class(self::$parser)))->getStaticProperties();
-
-        $this->assertArrayHasKey('multiLineArray', $staticProperties);
-        $this->assertSame($staticProperties['multiLineArray'], 1);
     }
 }

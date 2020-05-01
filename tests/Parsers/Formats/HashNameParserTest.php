@@ -14,12 +14,10 @@ class HashNameParserTest extends TestCaseParser
     {
         $node = $this->getMockBuilder(\Enginedata\Node::class)->getMock();
 
-        $node->expects($this->once())
-            ->method('setValue')
-            ->with(
-                $this->equalTo('EngineDict')
-            );
+        $reflectionClass = new ReflectionClass(get_class(self::$parser));
 
         $this->startParsingTest(3, $node);
+
+        $this->assertSame($reflectionClass->getStaticProperties()['hashName'], 'EngineDict');
     }
 }

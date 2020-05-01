@@ -42,11 +42,11 @@ class LineParserTest extends TestCase
 
         $line_parser->expects($this->once())
             ->method('getParsers')
-            ->will($this->returnValue([Parser::class => $parser]));
+            ->will($this->returnValue([Parser::class => Parser::class]));
 
         $line_parser->expects($this->once())
             ->method('getParser')
-            ->will($this->returnArgument(0));
+            ->will($this->returnValue($parser));
 
         /** @var LineParser $line_parser */
         $line_parser->parse($node, 'Test Line');
@@ -132,12 +132,12 @@ class LineParserTest extends TestCase
         $parsers = [
             [],
             [
-                'parser_name' => 'parser',
+                'parser' => 'parser',
             ],
             [
-                'parser_name_1' => 'parser_1',
-                'parser_name_2' => 'parser_2',
-                'parser_name_3' => 'parser_3',
+                'parser_1' => 'parser_1',
+                'parser_2' => 'parser_2',
+                'parser_3' => 'parser_3',
             ],
         ];
 

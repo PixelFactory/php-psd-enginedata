@@ -15,11 +15,21 @@ class SingleLineArrayParserTest extends TestCaseParser
         $node = $this->getMockBuilder(\Enginedata\Node::class)->getMock();
 
         $node->expects($this->once())
-            ->method('setValue')
+            ->method('addNode')
             ->with(
-                $this->equalTo('WordSpacing'),
-                $this->equalTo([0.8, 1, 1.33])
+                $this->equalTo('WordSpacing')
             );
+
+        $node->expects($this->exactly(3))
+            ->method('addValue')
+            ->withConsecutive(
+                [ $this->equalTo(0.8) ],
+                [ $this->equalTo(1) ],
+                [ $this->equalTo(1.33) ],
+            );
+
+        $node->expects($this->once())
+            ->method('parentNode');
 
         $this->startParsingTest(8, $node);
     }
