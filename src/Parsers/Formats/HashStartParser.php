@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Enginedata\Parsers\Formats;
 
 use Enginedata\Parsers\Parser;

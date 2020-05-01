@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Enginedata\Parsers;
 
 use Enginedata\Interfaces\NodeInterface;
