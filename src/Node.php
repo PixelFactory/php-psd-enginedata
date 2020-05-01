@@ -3,6 +3,7 @@
 namespace Enginedata;
 
 use Exception;
+use Enginedata\Interfaces\NodeInterface;
 
 class Node implements NodeInterface
 {
@@ -28,8 +29,8 @@ class Node implements NodeInterface
      * ];
      * ```
      *
-     * @param $key
-     * @param $value
+     * @param mixed $key
+     * @param mixed $value
      * @throws Exception
      */
 
@@ -55,7 +56,7 @@ class Node implements NodeInterface
      *     2 => 'value3'
      * ];
      * ```
-     * @param $value
+     * @param mixed $value
      * @throws Exception
      */
     public function addValue($value): void
@@ -84,7 +85,7 @@ class Node implements NodeInterface
      * ];
      * ```
      *
-     * @param $key
+     * @param mixed $key
      */
     public function addNode($key = null): void
     {
@@ -135,8 +136,8 @@ class Node implements NodeInterface
     /**
      * Validates data and set value in node
      *
-     * @param $value
-     * @param null $key
+     * @param mixed $value
+     * @param mixed $key
      * @throws Exception
      */
     protected function setNodeData($value, $key = null): void

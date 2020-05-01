@@ -2,8 +2,8 @@
 
 namespace Enginedata\Parsers\Formats;
 
-use Enginedata\NodeInterface;
 use Enginedata\Parsers\NumbersParser;
+use Enginedata\Interfaces\NodeInterface;
 
 class NumberParser extends NumbersParser
 {

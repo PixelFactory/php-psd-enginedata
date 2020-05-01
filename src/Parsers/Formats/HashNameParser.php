@@ -2,8 +2,8 @@
 
 namespace Enginedata\Parsers\Formats;
 
-use Enginedata\NodeInterface;
 use Enginedata\Parsers\Parser;
+use Enginedata\Interfaces\NodeInterface;
 
 class HashNameParser extends Parser
 {

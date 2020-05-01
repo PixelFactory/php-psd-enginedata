@@ -43,11 +43,11 @@ class EnginedataTest extends TestCase
 
         // Create mock classes
         eval('
-            use Enginedata\NodeInterface;
             use Enginedata\Parsers\Parser;
-            use Enginedata\LineParserInterface;
+            use Enginedata\Interfaces\NodeInterface;
+            use Enginedata\Interfaces\LineParserInterface;
 
-            class ' . $nodeTestClass . ' implements \Enginedata\NodeInterface
+            class ' . $nodeTestClass . ' implements NodeInterface
             {
                 public function getNode(): array{}
                 public function setValue($key, $value): void{}

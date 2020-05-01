@@ -4,6 +4,8 @@ namespace Enginedata;
 
 use Exception;
 use SeekableIterator;
+use Enginedata\Interfaces\NodeInterface;
+use Enginedata\Interfaces\LineParserInterface;
 
 class Enginedata
 {
@@ -43,7 +45,7 @@ class Enginedata
     /**
      * @throws Exception
      */
-    public function parse()
+    public function parse(): array
     {
         for ($this->text->rewind(); $this->text->valid(); $this->text->next()) {
             $this->parseLine($this->text->current(), $this->text->key() + 1);
@@ -57,7 +59,7 @@ class Enginedata
      * @param $lineNumber
      * @throws Exception
      */
-    protected function parseLine($line, $lineNumber)
+    protected function parseLine($line, $lineNumber): void
     {
         try {
             $this->parser->parse($this->node, $line);
@@ -66,12 +68,12 @@ class Enginedata
         }
     }
 
-    public function result()
+    public function result(): array
     {
         return $this->getNode();
     }
 
-    public function getNode()
+    public function getNode(): array
     {
         return $this->node->getNode();
     }

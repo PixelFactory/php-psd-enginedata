@@ -7,7 +7,7 @@ use ArrayIterator;
 class Text extends ArrayIterator
 {
 
-    public function __construct($text, $flags = 0)
+    public function __construct(string $text, int $flags = 0)
     {
         $text = preg_replace('/(\n\t*)>>/', '$1>>>', $text);
         $text = preg_replace('/(\n\t*)<</', '$1<<<', $text);

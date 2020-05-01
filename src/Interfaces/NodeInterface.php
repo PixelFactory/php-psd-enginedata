@@ -1,6 +1,6 @@
 <?php
 
-namespace Enginedata;
+namespace Enginedata\Interfaces;
 
 interface NodeInterface
 {

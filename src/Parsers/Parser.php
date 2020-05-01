@@ -2,22 +2,20 @@
 
 namespace Enginedata\Parsers;
 
-use Enginedata\NodeInterface;
+use Enginedata\Interfaces\NodeInterface;
+use Enginedata\Interfaces\ParserInterface;
 
-abstract class Parser
+abstract class Parser implements ParserInterface
 {
     protected static ?string $hashName = null;
 
-    abstract public function expression(): string;
-    abstract protected function parse(NodeInterface $node, $line, $matches);
-
-
+    abstract protected function parse(NodeInterface $node, $line, array $matches);
     /**
      * @param NodeInterface $node
      * @param $line
      * @return bool
      */
-    public function startParsing(NodeInterface $node, $line)
+    public function startParsing(NodeInterface $node, string $line)
     {
         $status = preg_match($this->expression(), $line, $matches);
 

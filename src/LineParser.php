@@ -2,8 +2,11 @@
 
 namespace Enginedata;
 
-use Enginedata\Parsers\Parser;
+use Enginedata\Interfaces\ParserInterface;
 use Exception;
+use Enginedata\Parsers\Parser;
+use Enginedata\Interfaces\NodeInterface;
+use Enginedata\Interfaces\LineParserInterface;
 
 /**
  * Class LineParser contains 'Object Pool' all parsers
@@ -15,18 +18,18 @@ class LineParser implements LineParserInterface
      */
     protected array $parsers;
 
-    public function __construct($parsers)
+    public function __construct(array $parsers)
     {
         $this->parsers = $parsers;
     }
 
     /**
      * @param NodeInterface $node
-     * @param $line
+     * @param string $line
      * @return bool
      * @throws Exception
      */
-    public function parse(NodeInterface $node, $line): bool
+    public function parse(NodeInterface $node, string $line): bool
     {
         foreach ($this->getParsers() as $parserName) {
             $parser = $this->getParser($parserName);
@@ -50,16 +53,16 @@ class LineParser implements LineParserInterface
      * @param string $name Parser class name
      * @return Parser|null
      */
-    public function getParser($name): ?Parser
+    public function getParser(string $name): ?ParserInterface
     {
         return $this->getParserInstance($name);
     }
 
     /**
-     * @param $name
+     * @param string $name
      * @return Parser|null
      */
-    protected function getParserInstance($name): ?Parser
+    protected function getParserInstance(string $name): ?ParserInterface
     {
         if (!isset($this->parsers[$name])) {
             return null;
