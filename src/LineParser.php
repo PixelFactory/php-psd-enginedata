@@ -20,6 +20,13 @@ class LineParser implements LineParserInterface
 
     public function __construct(array $parsers)
     {
+        $parsers = array_flip($parsers);
+
+        foreach ($parsers as $parserClass => &$parser)
+        {
+            $parser = $parserClass;
+        }
+
         $this->parsers = $parsers;
     }
 
