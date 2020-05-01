@@ -146,13 +146,13 @@ class Node implements NodeInterface
         $data = $this->validateValue($value);
 
         // Checks num arguments because key can be set to 'null': $obj->setValue(null, 'data');
-        if (func_num_args() > 1) {
+        if (func_num_args() < 2) {
             $node[] = $data;
             return;
         }
 
         if (array_key_exists($key, $node)) {
-            throw new Exception('Duplicate key: ' . $key);
+            throw new Exception('Duplicate key: "' . var_export($key, true) . '"');
         }
 
         $node[$key] = $data;
