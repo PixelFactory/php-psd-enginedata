@@ -7,7 +7,7 @@ Parser [enginedata](https://github.com/layervault/psd-enginedata) on php
 ## Installation
 Add this line to your application's composer.json in require block:
 ```
-"loginovilya/php-psd-enginedata": "^2.0"
+"loginovilya/php-psd-enginedata": "^3.0"
 ```
 And then execute:
 ```
