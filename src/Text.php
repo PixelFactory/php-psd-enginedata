@@ -8,7 +8,6 @@ use ArrayIterator;
 
 class Text extends ArrayIterator
 {
-
     public function __construct(string $text, int $flags = 0)
     {
         $text = preg_replace('/(\n\t*)>>/', '$1>>>', $text);

@@ -5,8 +5,8 @@ use Enginedata\Node;
 use Enginedata\Config;
 use Enginedata\LineParser;
 use Enginedata\Enginedata;
-use Enginedata\NodeInterface;
-use Enginedata\LineParserInterface;
+use Enginedata\Interfaces\NodeInterface;
+use Enginedata\Interfaces\LineParserInterface;
 
 class EnginedataTest extends TestCase
 {

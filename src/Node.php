@@ -93,11 +93,10 @@ class Node implements NodeInterface
     {
         $node = &$this->getNodeByPath();
 
-        if(isset($key))
-        {
+        if (isset($key)) {
             $node[$key] = [];
             $this->path[] = $key;
-        }else{
+        } else {
             $node[] = [];
             // Set in path last value key
             $this->path[] = end(...[array_keys($node)]);
@@ -216,7 +215,7 @@ class Node implements NodeInterface
     {
         $temp = &$this->node;
 
-        foreach($this->path as $key) {
+        foreach ($this->path as $key) {
             $temp = &$temp[$key];
         }
 

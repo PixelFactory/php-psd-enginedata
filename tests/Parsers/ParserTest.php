@@ -1,13 +1,12 @@
 <?php
 
+use Enginedata\Node;
 use Enginedata\Parsers\Parser;
+use Enginedata\Interfaces\NodeInterface;
 
 class ParserTest extends TestCase
 {
-    /**
-     * @var Parser $parser
-     */
-    protected $parser;
+    protected Parser $parser;
 
     protected function setUp(): void
     {
@@ -18,18 +17,11 @@ class ParserTest extends TestCase
         $this->parser->expects($this->any())->method('parse')->willReturn(true);
     }
 
-
-    /**
-     * @covers \Enginedata\Parsers\Parser::startParsing
-     * @throws ReflectionException
-     */
     public function testStartParsing()
     {
-        $node = $this->getMockBuilder(\Enginedata\Node::class)->getMock();
+        /** @var NodeInterface $node */
+        $node = $this->getMockBuilder(Node::class)->getMock();
 
-        /**
-         * @var \Enginedata\NodeInterface $node
-         */
         $this->assertSame($this->parser->startParsing($node, '<<'), true);
         $this->assertSame($this->parser->startParsing($node, 'line'), false);
     }

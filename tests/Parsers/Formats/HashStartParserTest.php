@@ -1,5 +1,7 @@
 <?php
 
+use Enginedata\Node;
+
 class HashStartParserTest extends TestCaseParser
 {
     public function testExpression()
@@ -12,7 +14,7 @@ class HashStartParserTest extends TestCaseParser
      */
     public function testParse()
     {
-        $node = $this->getMockBuilder(\Enginedata\Node::class)->getMock();
+        $node = $this->getMockBuilder(Node::class)->getMock();
         $value = 'Test Value';
 
         $node->expects($this->once())

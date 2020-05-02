@@ -9,7 +9,7 @@ class TestCaseParser extends TestCase
 
     public static function setUpBeforeClass(): void
     {
-        self::$parsers_data = file(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'resources' . DIRECTORY_SEPARATOR . 'parsers_data');
+        self::$parsers_data = file(__DIR__ . '/../../resources/parsers_data');
 
         $class_name = '\\Enginedata\\Parsers\\Formats\\' . substr(static::class, 0, -4);
         self::$parser = new $class_name();

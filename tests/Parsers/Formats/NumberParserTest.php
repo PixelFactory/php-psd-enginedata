@@ -1,5 +1,7 @@
 <?php
 
+use Enginedata\Node;
+
 class NumberParserTest extends TestCaseParser
 {
     public function testExpression()
@@ -12,7 +14,7 @@ class NumberParserTest extends TestCaseParser
      */
     public function testParse()
     {
-        $node = $this->getMockBuilder(\Enginedata\Node::class)->getMock();
+        $node = $this->getMockBuilder(Node::class)->getMock();
 
         $node->expects($this->once())
             ->method('setValue')

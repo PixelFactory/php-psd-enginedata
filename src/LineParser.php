@@ -24,8 +24,7 @@ class LineParser implements LineParserInterface
     {
         $parsers = array_flip($parsers);
 
-        foreach ($parsers as $parserClass => &$parser)
-        {
+        foreach ($parsers as $parserClass => &$parser) {
             $parser = $parserClass;
         }
 

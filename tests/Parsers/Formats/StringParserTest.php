@@ -1,11 +1,12 @@
 <?php
 
+use Enginedata\Node;
+
 class StringParserTest extends TestCaseParser
 {
     public function testExpression()
     {
         $this->checkExpressionOnAllData([9,10]);
-        //$this->checkExpressionOnAllData(10);
     }
 
     /**
@@ -13,8 +14,7 @@ class StringParserTest extends TestCaseParser
      */
     public function testParse()
     {
-
-        $node = $this->getMockBuilder(\Enginedata\Node::class)->getMock();
+        $node = $this->getMockBuilder(Node::class)->getMock();
 
 
         $node->expects($this->exactly(2))

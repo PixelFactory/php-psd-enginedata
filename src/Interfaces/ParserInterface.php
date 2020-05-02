@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Enginedata\Interfaces;
 
-interface ParserInterface{
+interface ParserInterface
+{
     public function expression(): string;
     public function startParsing(NodeInterface $node, string $line);
 }

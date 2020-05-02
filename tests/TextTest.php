@@ -4,9 +4,6 @@ use Enginedata\Text;
 
 class TextTest extends TestCase
 {
-    /**
-     * @covers \Enginedata\Text::__construct
-     */
     public function testTextToArray()
     {
         $text_data = [
@@ -27,12 +24,11 @@ class TextTest extends TestCase
 
     /**
      * @param $text
-     * @covers \Enginedata\Text::__construct
      * @dataProvider resourcesTextData
      */
     public function testResourcesTextToArray($text)
     {
-        $this->assertInstanceOf(\ArrayIterator::class, new Text($text));
+        $this->assertInstanceOf(ArrayIterator::class, new Text($text));
     }
 
     public function resourcesTextData()

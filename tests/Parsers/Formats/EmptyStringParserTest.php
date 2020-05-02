@@ -1,5 +1,7 @@
 <?php
 
+use Enginedata\Node;
+
 class EmptyStringParserTest extends TestCaseParser
 {
     public function testExpression()
@@ -12,7 +14,7 @@ class EmptyStringParserTest extends TestCaseParser
      */
     public function testParse()
     {
-        $node = $this->getMockBuilder(\Enginedata\Node::class)->getMock();
+        $node = $this->getMockBuilder(Node::class)->getMock();
         $this->startParsingTest(1, $node);
     }
 }
