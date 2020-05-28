@@ -6,6 +6,7 @@ use Enginedata\Config;
 use Enginedata\LineParser;
 use Enginedata\Enginedata;
 use Enginedata\Interfaces\NodeInterface;
+use Enginedata\Interfaces\ParserInterface;
 use Enginedata\Interfaces\LineParserInterface;
 
 class EnginedataTest extends TestCase
@@ -37,40 +38,31 @@ class EnginedataTest extends TestCase
 
     public function testConfigInitializeEnginedata()
     {
-        $nodeTestClass = 'TestNode';
-        $textTestClass = 'TestText';
-        $lineParserTestClass = 'TestLineParser';
+        $nodeTestClass = new class implements NodeInterface
+        {
+            public function getNode(): array{ return []; }
+            public function setValue($key, $value): void{}
+            public function addValue($value): void{}
+            public function addNode($key = null): void{}
+            public function parentNode(): void{}
+        };
 
-        // Create mock classes
-        eval('
-            use Enginedata\Parsers\Parser;
-            use Enginedata\Interfaces\NodeInterface;
-            use Enginedata\Interfaces\LineParserInterface;
+        $textTestClass = new class implements SeekableIterator
+        {
+            public function seek($position){}
+            public function current(){}
+            public function key(){}
+            public function next(){}
+            public function rewind(){}
+            public function valid(){}
+        };
 
-            class ' . $nodeTestClass . ' implements NodeInterface
-            {
-                public function getNode(): array{}
-                public function setValue($key, $value): void{}
-                public function addValue($value): void{}
-                public function addNode($key = null): void{}
-                public function parentNode(): void{}
-            };
-            class ' . $textTestClass . ' implements SeekableIterator
-            {
-                public function seek(int $position){}
-                public function current(){}
-                public function key(){}
-                public function next(){}
-                public function rewind(){}
-                public function valid(){}
-            };
-            class ' . $lineParserTestClass . ' implements LineParserInterface
-            {
-               public function parse(NodeInterface $node, $line): bool{}
-               public function getParsers(): array{}
-               public function getParser($name): ?Parser{}
-            };
-        ');
+        $lineParserTestClass =  new class implements LineParserInterface
+        {
+            public function parse(NodeInterface $node, $line): bool{ return true; }
+            public function getParsers(): array{ return []; }
+            public function getParser($name): ?ParserInterface{ return null; }
+        };
 
         $enginedata = $this->getMockBuilder(Enginedata::class)
             ->disableOriginalConstructor()
@@ -80,10 +72,10 @@ class EnginedataTest extends TestCase
             ->method('getConfig')
             ->will(
                 $this->onConsecutiveCalls(
-                    $nodeTestClass,
-                    $textTestClass,
+                    get_class($nodeTestClass),
+                    get_class($textTestClass),
                     [],
-                    $lineParserTestClass
+                    get_class($lineParserTestClass)
                 )
             );
 
