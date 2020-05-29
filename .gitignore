@@ -1,6 +1,2 @@
-.DS_Store
-Desktop.ini
-.idea
 vendor/
 build/
-composer.lock
