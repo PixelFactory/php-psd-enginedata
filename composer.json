@@ -10,7 +10,7 @@
         "php-coveralls/php-coveralls": "^2.1",
         "squizlabs/php_codesniffer": "3.*"
     },
-    "license": "GNU GPL v2.0",
+    "license": "MIT",
     "authors": [
         {
             "name": "LoginovIlya",
