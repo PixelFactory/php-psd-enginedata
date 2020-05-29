@@ -204,19 +204,14 @@ class EnginedataTest extends TestCase
      */
     public function testGetConfig()
     {
-        $mockConfigName = 'MockConfig';
-        $configField = 'test';
-        // Init mock config
-        eval("
-            class $mockConfigName
-            {
-                public const DEFAULT_CONFIG = [
-                    '$configField' => stdClass::class,
+        $config = new class
+        {
+            public const DEFAULT_CONFIG = [
+                'test' => stdClass::class,
                 ];
-            }
-        ");
+        };
 
-        $config = new $mockConfigName();
+        [$configField] = array_keys($this->getConstant($config, 'DEFAULT_CONFIG'));
 
         $enginedata = $this->getMockBuilder(Enginedata::class)
             ->disableOriginalConstructor()

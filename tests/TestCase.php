@@ -41,14 +41,25 @@ class TestCase extends Test
      */
     protected function callProtectedMethod($obj, $methodName, array $params = [])
     {
-        $reflector = $this->getReflectionObject($obj);
-        $method = $reflector->getMethod($methodName);
+        $reflection = $this->getReflectionObject($obj);
+        $method = $reflection->getMethod($methodName);
         $method->setAccessible(true);
 
         return $method->invokeArgs($obj, $params);
     }
 
-    protected function getReflectionObject($obj)
+    /**
+     * @param $obj
+     * @param $name
+     * @return mixed
+     */
+    protected function getConstant($obj, $name)
+    {
+        $reflection = $this->getReflectionObject($obj);
+        return $reflection->getConstant($name);
+    }
+
+    private function getReflectionObject($obj)
     {
         if ($obj instanceof Reflector) {
             return $obj;
